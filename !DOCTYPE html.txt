@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Sales Website</title>
+    <link rel="stylesheet" href="styles.css"> 
+</head>
+<body>
+
+<header>
+    <h1>Best Car Deals</h1>
+</header>
+
+<nav>
+    <a href="#inventory">Inventory</a>
+    <a href="#sell">Sell Your Car</a>
+    <a href="#financing">Financing</a>
+    <a href="#account">User Account</a>
+    <a href="#contact">Contact Us</a>
+</nav>
+
+<div class="hero">
+    <h1>Your Dream Car Awaits!</h1>
+</div>
+
+<section id="inventory">
+    <h2>Our Inventory</h2>
+    <div class="inventory">
+        <div class="car-card">
+            <img src="car1.jpg" alt="Car 1" width="100%">
+            <h3>Car Make & Model</h3>
+            <p>Year: 2021</p>
+            <p>Mileage: 20,000 miles</p>
+            <p>Price: $25,000</p>
+            <button onclick="alert('Detailed View Not Implemented Yet')">View Details</button>
+        </div>
+        <div class="car-card">
+            <img src="car2.jpg" alt="Car 2" width="100%">
+            <h3>Car Make & Model</h3>
+            <p>Year: 2020</p>
+            <p>Mileage: 15,000 miles</p>
+            <p>Price: $22,000</p>
+            <button onclick="alert('Detailed View Not Implemented Yet')">View Details</button>
+        </div>
+        </div>
+</section>
+
+---
+
+<section id="sell" class="account-section"> 
+    <h2>Sell Your Car to Us</h2>
+    <p>Get a fast, fair offer for your vehicle! Fill out the form below to get started.</p>
+    <form>
+        <label for="carMake">Make/Model:</label><br>
+        <input type="text" id="carMake" placeholder="e.g., Toyota Camry"><br>
+        <label for="carYear">Year:</label><br>
+        <input type="number" id="carYear" placeholder="e.g., 2018"><br>
+        <label for="carMileage">Mileage:</label><br>
+        <input type="number" id="carMileage" placeholder="miles"><br>
+        <button type="button" onclick="alert('Valuation request submitted!')">Get Offer</button>
+    </form>
+</section>
+
+---
+
+<section id="financing" class="calculator">
+    <h2>Financing Calculator</h2>
+    <form>
+        <label for="loanAmount">Loan Amount ($):</label><br>
+        <input type="number" id="loanAmount" placeholder="Enter amount"><br>
+        <label for="interestRate">Interest Rate (%):</label><br>
+        <input type="number" id="interestRate" placeholder="Enter interest rate"><br>
+        <label for="loanTerm">Loan Term (years):</label><br>
+        <input type="number" id="loanTerm" placeholder="Enter number of years"><br>
+        <button type="button" onclick="calculateFinancing()">Calculate</button>
+    </form>
+    <h3 id="monthlyPayment"></h3>
+</section>
+
+---
+
+<section id="account" class="account-section">
+    <h2>User Account</h2>
+    <p>Log in or create an account to save your favorite cars and manage your preferences.</p>
+    <form>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" placeholder="Enter your email"><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" placeholder="Enter your password"><br>
+        <button type="button" onclick="alert('Log in functionality not implemented')">Log In</button>
+        <button type="button" onclick="alert('Register functionality not implemented')">Register</button>
+    </form>
+</section>
+
+---
+
+<section id="testimonials">
+    <h2>Testimonials</h2>
+    <p>"Great experience buying my new car!" - John Doe</p>
+    <p>"The team was very helpful!" - Jane Smith</p>
+</section>
+
+---
+
+<section id="contact" class="account-section"> 
+    <h2>Contact Us</h2>
+    <p>We'd love to hear from you. Reach out via email, phone, or visit our location.</p>
+    <address>
+        Email: <a href="mailto:info@bestcardeals.com">info@bestcardeals.com</a><br>
+        Phone: (555) 123-4567<br>
+        Address: 123 Car Dealership Ave, Auto City, USA
+    </address>
+    <p>Find us easily with this map link:</p>
+</section>
+
+---
+
+<footer>
+    <p>&copy; 2023 Best Car Deals. All rights reserved.</p>
+    <p><a href="#contact" style="color: white;">Contact Us</a></p>
+</footer>
+
+<script>
+    function calculateFinancing() {
+        const loanAmount = parseFloat(document.getElementById('loanAmount').value);
+        const interestRate = parseFloat(document.getElementById('interestRate').value) / 100 / 12;
+        const loanTerm = parseFloat(document.getElementById('loanTerm').value) * 12;
+
+        const x = Math.pow(1 + interestRate, loanTerm);
+        // Monthly Payment Formula: M = P [ i(1 + i)^n ] / [ (1 + i)^n – 1 ]
+        const monthlyPayment = (loanAmount * x * interestRate) / (x - 1); 
+
+        if (!isNaN(monthlyPayment) && (monthlyPayment != Infinity) && (monthlyPayment > 0)) {
+            document.getElementById('monthlyPayment').innerText = `Your estimated monthly payment is $${monthlyPayment.toFixed(2)}`;
+        } else {
+            document.getElementById('monthlyPayment').innerText = 'Please enter valid values.';
+        }
+    }
+</script>
+
+</body>
+</html>
